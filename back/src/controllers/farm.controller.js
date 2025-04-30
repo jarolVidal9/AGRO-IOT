@@ -30,6 +30,9 @@ const getFarms = async (req, res, next) => {
         const farms = await prisma.farm.findMany({
             include: {
                 sectors: true
+            },
+            orderBy: {
+                createdAt: 'desc'
             }
         });
         res.status(200).json(farms);
@@ -56,10 +59,22 @@ const getFarmById = async (req, res, next) => {
 const updateFarm = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { name, location, size } = req.body;
+        const { name, location, size, sectors } = req.body;
+
         const farm = await prisma.farm.update({
             where: { id: id },
-            data: { name, location, size }
+            data: {
+            name,
+            location,
+            size,
+            sectors: {
+                deleteMany: {}, 
+                create: sectors.map(sector => ({
+                name: sector.name,
+                size: sector.size
+                }))
+            }
+            }
         });
         res.status(200).json({ message: 'Farm updated successfully', farm });
     } catch (error) {

@@ -9,13 +9,17 @@
     </div>
     @if(farm?.sectors) {
         <div class="border-t border-gray-200 pt-4">
-            <h3 class="text-xl font-bold mb-2">Sectores</h3>
+            <h3 class="text-xl font-bold mb-4">Sectores</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @for(sector of farm?.sectors; track sector.id) {
-                <div class="mb-2">
-                    <p><span class="font-semibold">Nombre:</span> {{ sector.name }}</p>
-                    <p><span class="font-semibold">Tamaño:</span>{{ sector.size }} m<sup>2</sup></p>
+                <div class="p-4 bg-gray-50 rounded-lg shadow hover:shadow-lg transition-shadow">
+                <h4 class="text-lg font-semibold mb-2">{{ sector.name }}</h4>
+                <p class="text-sm text-gray-600">
+                    <span class="font-medium">Tamaño:</span> {{ sector.size }} m<sup>2</sup>
+                </p>
                 </div>
             }
+            </div>
         </div>
     }@else {
         <p class="text-gray-500">No hay sectores disponibles.</p>
