@@ -1,0 +1,17 @@
+<nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <!-- Nombre del aplicativo -->
+    <div class="text-lg font-bold">
+        AGRO IOT
+    </div>
+
+    <!-- Menú en el centro -->
+    <ul class="flex space-x-4">
+        <li><a routerLink="/" class="hover:underline">Fincas</a></li>
+        <li><a routerLink="/cultivos" class="hover:underline">Cultivos</a></li>
+    </ul>
+
+    <!-- Opción de cerrar sesión -->
+    <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded" (click)="logout()">
+        Cerrar Sesión
+    </button>
+</nav>
